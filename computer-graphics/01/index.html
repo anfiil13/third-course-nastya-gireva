@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Занятие 1. Растровая графика и алгоритм ЦДА</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Растровая графика и алгоритм ЦДА</h1>
+        <p class="subtitle">Цифровой дифференциальный анализатор (DDA)</p>
+
+        <div class="main-layout">
+            <div class="controls-panel">
+                <div class="control-card">
+                    <h2>Параметры отрезка</h2>
+
+                    <div class="coord-group">
+                        <h3>Начало A (x₁, y₁)</h3>
+                        <div class="input-row">
+                            <label>x₁ <input type="number" id="x1" value="2" min="0" max="39"></label>
+                            <label>y₁ <input type="number" id="y1" value="2" min="0" max="29"></label>
+                        </div>
+                    </div>
+
+                    <div class="coord-group">
+                        <h3>Конец B (x₂, y₂)</h3>
+                        <div class="input-row">
+                            <label>x₂ <input type="number" id="x2" value="20" min="0" max="39"></label>
+                            <label>y₂ <input type="number" id="y2" value="8" min="0" max="29"></label>
+                        </div>
+                    </div>
+
+                    <button id="buildBtn" class="btn-primary">Построить</button>
+                    <button id="clearBtn" class="btn-secondary">Очистить</button>
+
+                    <div class="presets">
+                        <h3>Проверочные случаи</h3>
+                        <div class="preset-buttons">
+                            <button class="preset" data-x1="2"  data-y1="2"  data-x2="20" data-y2="8">(2,2)→(20,8)</button>
+                            <button class="preset" data-x1="20" data-y1="8"  data-x2="2"  data-y2="2">(20,8)→(2,2)</button>
+                            <button class="preset" data-x1="5"  data-y1="2"  data-x2="5"  data-y2="20">(5,2)→(5,20)</button>
+                            <button class="preset" data-x1="2"  data-y1="10" data-x2="25" data-y2="10">(2,10)→(25,10)</button>
+                            <button class="preset" data-x1="3"  data-y1="20" data-x2="12" data-y2="2">(3,20)→(12,2)</button>
+                            <button class="preset" data-x1="8"  data-y1="8"  data-x2="8"  data-y2="8">(8,8)→(8,8)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-card info-card">
+                    <h2>Информация</h2>
+                    <div class="info-row"><span>dx:</span><span id="infoDx" class="v-stat">—</span></div>
+                    <div class="info-row"><span>dy:</span><span id="infoDy" class="v-stat">—</span></div>
+                    <div class="info-row"><span>steps = max(|dx|, |dy|):</span><span id="infoSteps" class="v-stat">—</span></div>
+                    <div class="info-row"><span>xStep:</span><span id="infoXStep" class="v-stat">—</span></div>
+                    <div class="info-row"><span>yStep:</span><span id="infoYStep" class="v-stat">—</span></div>
+                    <div class="info-row"><span>Поставлено пикселей:</span><span id="infoPixels" class="v-stat">—</span></div>
+                </div>
+            </div>
+
+            <div class="canvas-panel">
+                <canvas id="canvas" width="800" height="600"></canvas>
+                <p class="canvas-hint">Логическая область: 40 × 30 пикселей, масштаб: 20×</p>
+            </div>
+        </div>
+
+        <div class="table-panel">
+            <h2>Таблица шагов алгоритма ЦДА</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>шаг</th>
+                            <th>x до округления</th>
+                            <th>y до округления</th>
+                            <th>пиксель x</th>
+                            <th>пиксель y</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stepsBody">
+                        <tr><td colspan="5" class="empty">Нажмите «Построить», чтобы увидеть шаги алгоритма</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="dda.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

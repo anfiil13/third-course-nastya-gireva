@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Анализатор чисел</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <h1>Анализатор чисел</h1>
+
+    <section class="controls">
+      <div class="control-row">
+        <label for="number">Число:</label>
+        <input id="number" type="number" step="any" placeholder="Введите число">
+        <button id="add-btn" class="btn btn-primary">Добавить</button>
+      </div>
+
+      <div class="control-row">
+        <button id="remove-btn" class="btn">Удалить последнее</button>
+        <button id="clear-btn" class="btn btn-danger">Очистить</button>
+      </div>
+
+      <p id="error" class="error" hidden></p>
+    </section>
+
+    <section class="stats">
+      <div class="stat-card">
+        <span class="stat-label">Количество</span>
+        <span id="count" class="stat-value">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Сумма</span>
+        <span id="sum" class="stat-value">—</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Среднее</span>
+        <span id="average" class="stat-value">—</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Минимум</span>
+        <span id="min" class="stat-value">—</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Максимум</span>
+        <span id="max" class="stat-value">—</span>
+      </div>
+    </section>
+
+    <section class="list-section">
+      <h2>Введённые числа</h2>
+      <ul id="list" class="number-list"></ul>
+      <p id="empty-message" class="empty-message">Список пуст</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

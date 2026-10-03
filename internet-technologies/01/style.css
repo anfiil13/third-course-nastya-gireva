@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f4f5f7;
+  color: #0d0d0d;
+}
+
+.card {
+  background: #ffffff;
+  padding: 32px 40px;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  min-width: 280px;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.value {
+  font-size: 56px;
+  font-weight: 700;
+  margin: 8px 0;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.2s ease;
+}
+
+.value.positive { color: #2e7d32; }
+.value.negative { color: #c62828; }
+.value.zero     { color: #0d0d0d; }
+
+.message {
+  margin: 0 0 24px;
+  font-size: 15px;
+  color: #555;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+button:hover {
+  background: #f0f2f5;
+}
+
+button:active {
+  background: #e4e7ec;
+}
+
+#increase,
+#decrease {
+  font-weight: 600;
+}
