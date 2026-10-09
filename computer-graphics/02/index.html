@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>ЛР2 — ЦДА и Брезенхем</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><span class="dot"></span><h1>Компьютерная графика · ЛР 2</h1></div>
+  <nav class="tabs">
+    <button class="tab active" data-panel="panel-build">Построение</button>
+    <button class="tab" data-panel="panel-table">Таблица Брезенхема</button>
+    <button class="tab" data-panel="panel-compare">Сравнение</button>
+    <button class="tab" data-panel="panel-bench">Эксперимент</button>
+  </nav>
+</header>
+
+<main>
+
+  <section id="panel-build" class="panel active">
+    <div class="layout">
+      <aside class="controls">
+        <div class="card">
+          <h2>Отрезок</h2>
+          <div class="grid2">
+            <label class="field"><span class="label">x1</span><input type="number" id="x1" value="2" min="0" max="79"></label>
+            <label class="field"><span class="label">y1</span><input type="number" id="y1" value="2" min="0" max="49"></label>
+            <label class="field"><span class="label">x2</span><input type="number" id="x2" value="70" min="0" max="79"></label>
+            <label class="field"><span class="label">y2</span><input type="number" id="y2" value="30" min="0" max="49"></label>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Алгоритм</h2>
+          <div class="radios">
+            <label class="radio"><input type="radio" name="algo" value="dda" checked><span>ЦДА (DDA)</span></label>
+            <label class="radio"><input type="radio" name="algo" value="bresenham"><span>Брезенхем</span></label>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Отображение</h2>
+          <label class="switch"><input type="checkbox" id="pixelMode" checked><span>Крупные пиксели-квадраты</span></label>
+          <label class="switch"><input type="checkbox" id="showGrid" checked><span>Сетка растра</span></label>
+          <label class="switch"><input type="checkbox" id="showLabels"><span>Подписи координат</span></label>
+        </div>
+
+        <div class="card"><h2>Пресеты</h2><div class="preset-list" id="presets"></div></div>
+
+        <div class="card stats">
+          <h2>Статистика</h2>
+          <div class="stat-row"><span>Алгоритм</span><b id="statAlgo">ЦДА</b></div>
+          <div class="stat-row"><span>Пикселей</span><b id="statCount">0</b></div>
+          <div class="stat-row"><span>Δx, Δy</span><b id="statDelta">0, 0</b></div>
+        </div>
+      </aside>
+
+      <div class="stage">
+        <div class="card canvas-card">
+          <canvas id="cv" width="800" height="500"></canvas>
+          <div class="canvas-hint">Клик — задать начало · Shift+клик — задать конец</div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Выбранные пиксели</h2><span class="badge" id="pixelBadge">0 шт.</span></div>
+          <div class="pixel-list" id="pixelList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="panel-table" class="panel">
+    <div class="card">
+      <div class="card-head">
+        <h2>Пошаговая таблица Брезенхема</h2>
+        <button class="btn outline" id="tblAll">Показать все шаги</button>
+      </div>
+      <p class="muted">Отрезок берётся из вкладки «Построение». Столбец <b>change</b> — какие координаты изменились на этом шаге.</p>
+      <div class="table-wrap">
+        <table id="bresTable">
+          <thead>
+            <tr><th>шаг</th><th>x</th><th>y</th><th>error</th><th>error2</th>
+                <th>e2 &gt; -dx</th><th>e2 &lt; dy</th><th>change</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="panel-compare" class="panel">
+    <div class="card">
+      <div class="card-head"><h2>Сравнение наборов пикселей</h2><button class="btn" id="runCompare">Пересчитать</button></div>
+      <p class="muted">Пять контрольных отрезков: горизонтальный, вертикальный, пологий, крутой и обратный.</p>
+      <div id="compareResults"></div>
+    </div>
+  </section>
+
+  <section id="panel-bench" class="panel">
+    <div class="card">
+      <div class="card-head"><h2>Замер производительности</h2><button class="btn" id="runBench">Запустить серию</button></div>
+      <div class="grid3">
+        <label class="field"><span class="label">Отрезков за прогон</span><input type="number" id="benchN" value="20000" min="1000" step="1000"></label>
+        <label class="field"><span class="label">Повторов</span><input type="number" id="benchRuns" value="7" min="3" max="25"></label>
+        <label class="field"><span class="label">Прогрев, шт.</span><input type="number" id="benchWarm" value="5000" min="0" step="1000"></label>
+      </div>
+      <p class="muted">Замеры только считают пиксели в массив, без рисования — так честнее сравнивать сами алгоритмы.</p>
+      <div id="benchOut" class="bench-out"></div>
+      <canvas id="benchChart" width="760" height="240"></canvas>
+    </div>
+  </section>
+
+</main>
+
+<script src="algorithms.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
