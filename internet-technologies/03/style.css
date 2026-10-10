@@ -1,0 +1,172 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+button,
+input {
+  padding: 10px 12px;
+  font-size: 16px;
+}
+
+input {
+  min-width: 300px;
+  flex: 1;
+}
+
+.info {
+  margin-bottom: 20px;
+}
+
+.users {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.message {
+  padding: 40px 24px;
+  text-align: center;
+  color: #6b7280;
+  background: #fff;
+  border: 1px dashed #e5e5e5;
+  border-radius: 12px;
+}
+
+.message--error {
+  color: #d64545;
+  background: #fdecec;
+  border: 1px solid #f3c9c9;
+  border-style: solid;
+}
+
+.message__title {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.message__text {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 12px;
+  border: 3px solid #e5e5e5;
+  border-top-color: #4d6bfe;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.user-card__name {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.user-card__username {
+  font-size: 0.85rem;
+  color: #4d6bfe;
+  font-weight: 500;
+}
+
+.user-card__field {
+  display: flex;
+  gap: 6px;
+  font-size: 0.88rem;
+}
+
+.user-card__label {
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.user-card__value {
+  color: #222;
+  word-break: break-word;
+}
+
+.user-card__email {
+  color: #4d6bfe;
+  text-decoration: none;
+}
+
+.user-card__email:hover {
+  text-decoration: underline;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.stats__item {
+  flex: 1;
+  min-width: 150px;
+}
+
+.stats__value {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #4d6bfe;
+}
+
+.stats__label {
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+
+.stats__cities {
+  flex-basis: 100%;
+  padding-top: 12px;
+  border-top: 1px solid #e5e5e5;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.stats__cities strong {
+  color: #222;
+}
