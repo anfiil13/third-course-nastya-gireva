@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Практическая работа №3 — Растеризация окружности (алгоритм средней точки)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="page-header">
+    <h1>Практическая работа №3</h1>
+    <p class="subtitle">Растеризация окружности: алгоритм средней точки (midpoint circle)</p>
+  </header>
+
+  <main class="layout">
+    <section class="card controls">
+      <h2 class="card-title">Параметры</h2>
+
+      <div class="field">
+        <label for="cx">cx (центр X)</label>
+        <input id="cx" type="number" value="20" step="1" />
+      </div>
+
+      <div class="field">
+        <label for="cy">cy (центр Y)</label>
+        <input id="cy" type="number" value="15" step="1" />
+      </div>
+
+      <div class="field">
+        <label for="r">r (радиус)</label>
+        <input id="r" type="number" value="5" step="1" min="1" />
+      </div>
+
+      <div class="row">
+        <button id="btn-build" class="btn">Построить</button>
+        <button id="btn-clear" class="btn btn-outline">Очистить</button>
+      </div>
+
+      <hr />
+
+      <h2 class="card-title">Отображение</h2>
+
+      <div class="field checkbox">
+        <input id="chk-grid" type="checkbox" checked />
+        <label for="chk-grid">Показывать сетку</label>
+      </div>
+
+      <div class="field checkbox">
+        <input id="chk-symmetry" type="checkbox" />
+        <label for="chk-symmetry">Подсветить 8 симметричных точек выбранного шага</label>
+      </div>
+
+      <div class="field">
+        <label for="step-select">Выбранный шаг для подсветки</label>
+        <select id="step-select"></select>
+      </div>
+
+      <div class="field checkbox">
+        <input id="chk-formula" type="checkbox" />
+        <label for="chk-formula">Показать также окружность через sqrt (формула)</label>
+      </div>
+
+      <hr />
+
+      <h2 class="card-title">Сравнение с sqrt</h2>
+      <p class="hint">Строит сектор через <code>y = round(sqrt(r² − x²))</code> и сравнивает набор пикселей и время.</p>
+      <button id="btn-compare" class="btn btn-outline">Сравнить</button>
+      <div id="compare-result" class="compare-result"></div>
+    </section>
+
+    <section class="card canvas-card">
+      <h2 class="card-title">Растр (логическая сетка)</h2>
+      <div class="canvas-wrap">
+        <canvas id="canvas" width="960" height="720"></canvas>
+      </div>
+      <p id="status" class="status">Готово.</p>
+    </section>
+
+    <section class="card table-card">
+      <h2 class="card-title">Таблица шагов</h2>
+      <div class="table-wrap">
+        <table id="steps-table">
+          <thead>
+            <tr>
+              <th>шаг</th>
+              <th>x</th>
+              <th>y</th>
+              <th>d до шага</th>
+              <th>выбранный вариант</th>
+              <th>d после шага</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/putpixel.js"></script>
+  <script src="js/circle.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
