@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ЛР 4 — CRUD публикаций</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Публикации (CRUD)</h1>
+
+    <section class="controls">
+      <button id="loadButton" type="button">Загрузить публикации</button>
+      <button id="reloadButton" type="button">Обновить</button>
+      <input
+        id="filterInput"
+        type="text"
+        placeholder="Поиск по заголовку или тексту"
+        autocomplete="off"
+      >
+    </section>
+
+    <section class="info">
+      <p id="status">Данные ещё не загружены.</p>
+      <p id="statistics"></p>
+    </section>
+
+    <section class="form-section">
+      <h2 id="formTitle">Новая публикация</h2>
+      <form id="postForm" novalidate>
+        <label class="field">
+          <span>Заголовок</span>
+          <input id="titleInput" type="text" placeholder="Введите заголовок" required>
+        </label>
+
+        <label class="field">
+          <span>Текст</span>
+          <textarea id="bodyInput" rows="4" placeholder="Введите текст публикации" required></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button id="submitButton" type="submit">Сохранить</button>
+          <button id="cancelButton" type="button" class="secondary" hidden>Отмена</button>
+        </div>
+
+        <p id="formError" class="error" hidden></p>
+      </form>
+    </section>
+
+    <section id="posts" class="posts"></section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
