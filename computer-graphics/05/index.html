@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Практическая работа №5 — Заполнение областей</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="eyebrow">Компьютерная графика · Занятие 5</p>
+      <h1>Заполнение областей и многоугольников</h1>
+      <p class="intro">Сравнение Flood Fill (4-связность) и Scanline Fill на логическом растре 40 × 30.</p>
+    </header>
+
+    <section class="workspace">
+      <div class="canvas-panel">
+        <div class="canvas-heading">
+          <div><h2>Логический растр</h2><p id="status">Выберите метод и нажмите «Выполнить».</p></div>
+          <span class="size-label">40 × 30</span>
+        </div>
+        <canvas id="raster" width="800" height="600" aria-label="Логическая сетка 40 на 30"></canvas>
+        <div class="legend">
+          <span><i class="swatch boundary"></i> Контур</span>
+          <span><i class="swatch fill"></i> Заполнение</span>
+          <span><i class="swatch visited"></i> Посещено Flood Fill</span>
+        </div>
+      </div>
+
+      <aside class="controls">
+        <h2>Управление</h2>
+        <label>Тестовый многоугольник
+          <select id="shape">
+            <option value="concave">Невыпуклый (по умолчанию)</option>
+            <option value="rectangle">Прямоугольник</option>
+            <option value="triangle">Треугольник</option>
+            <option value="convex">Выпуклый, 5 вершин</option>
+            <option value="horizontal">Горизонтальное ребро</option>
+            <option value="vertex">Строка через вершину</option>
+            <option value="open">Незамкнутый контур</option>
+          </select>
+        </label>
+        <label>Алгоритм
+          <select id="method">
+            <option value="flood">Flood Fill</option>
+            <option value="scanline">Scanline Fill</option>
+          </select>
+        </label>
+        <div class="button-row">
+          <button id="run">Выполнить</button>
+          <button id="reset" class="secondary">Сбросить</button>
+        </div>
+        <label>Стартовая точка Flood Fill (X, Y)
+          <div class="coordinate-row">
+            <input id="startX" type="number" min="0" max="39" value="15">
+            <input id="startY" type="number" min="0" max="29" value="15">
+          </div>
+        </label>
+        <p class="hint">Можно также щёлкнуть по клетке растра, чтобы задать seed.</p>
+        <label for="step">Пошаговый просмотр Flood Fill: <strong id="stepValue">все</strong></label>
+        <input id="step" type="range" min="0" max="0" value="0">
+        <div class="button-row">
+          <button id="prev" class="secondary">← Шаг</button>
+          <button id="next" class="secondary">Шаг →</button>
+        </div>
+        <label>Строка Scanline (Y)
+          <input id="rowY" type="number" min="0" max="29" value="12">
+        </label>
+        <button id="rowInfo" class="secondary full">Показать таблицу строки</button>
+        <button id="benchmark" class="secondary full">Сравнить методы</button>
+      </aside>
+    </section>
+
+    <section class="results">
+      <article>
+        <h2>Таблица выбранной строки</h2>
+        <div id="rowTable" class="table-wrap">Нажмите «Показать таблицу строки».</div>
+      </article>
+      <article>
+        <h2>Результаты выполнения</h2>
+        <div id="metrics" class="table-wrap">Пока нет измерений.</div>
+      </article>
+    </section>
+
+    <section class="explanation">
+      <h2>Краткое объяснение</h2>
+      <div class="explain-grid">
+        <div><h3>Flood Fill</h3><p>Начинает обход с seed-точки и распространяется по четырём соседям. Клетки контура и уже посещённые клетки пропускаются. Используется явный стек, а не рекурсия.</p></div>
+        <div><h3>Scanline Fill</h3><p>Для каждой строки ищет пересечения с непараллельными горизонтали рёбрами, сортирует координаты X и заполняет их попарно. Верхний конец ребра не включается: <code>yMin ≤ y &lt; yMax</code>.</p></div>
+      </div>
+      <p class="footnote">Цвета на экране — только отображение. Состояние клеток хранится в двумерном массиве JavaScript независимо от Canvas.</p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
