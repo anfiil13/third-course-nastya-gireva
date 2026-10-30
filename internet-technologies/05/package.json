@@ -1,0 +1,13 @@
+{
+  "name": "books-api",
+  "version": "1.0.0",
+  "description": "Учебный REST API на Node.js и Express: каталог книг",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
