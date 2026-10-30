@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Практическая работа №4. Отсечение отрезков (Коэн–Сазерленд)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Отсечение отрезков алгоритмом Коэна–Сазерленда</h1>
+    <p class="sub">Практическая работа №4 · компьютерная графика</p>
+  </header>
+
+  <main class="layout">
+    <section class="canvas-wrap v-card">
+      <canvas id="scene" width="760" height="560"></canvas>
+      <div class="legend">
+        <span><i class="sw sw-window"></i> окно отсечения</span>
+        <span><i class="sw sw-source"></i> исходный отрезок / ломаная</span>
+        <span><i class="sw sw-clip"></i> видимая часть</span>
+        <span><i class="sw sw-reject"></i> отброшено (полностью снаружи)</span>
+        <span><i class="sw sw-point"></i> вершины ломаной</span>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="v-card">
+        <h2 class="v-title">1. Окно отсечения</h2>
+        <div class="grid4">
+          <label class="v-label">xmin <input id="xmin" type="number" value="100" step="1"></label>
+          <label class="v-label">xmax <input id="xmax" type="number" value="560" step="1"></label>
+          <label class="v-label">ymin <input id="ymin" type="number" value="120" step="1"></label>
+          <label class="v-label">ymax <input id="ymax" type="number" value="440" step="1"></label>
+        </div>
+        <p id="window-error" class="error" hidden>Ошибка: требуется xmin &lt; xmax и ymin &lt; ymax</p>
+      </div>
+
+      <div class="v-card">
+        <h2 class="v-title">2. Отрезок</h2>
+        <div class="mode-row">
+          <label class="radio"><input type="radio" name="mode" value="segment" checked> один отрезок</label>
+          <label class="radio"><input type="radio" name="mode" value="polyline"> ломаная (5 точек)</label>
+        </div>
+
+        <div id="segment-fields" class="grid4">
+          <label class="v-label">x1 <input id="x1" type="number" value="40" step="1"></label>
+          <label class="v-label">y1 <input id="y1" type="number" value="60" step="1"></label>
+          <label class="v-label">x2 <input id="x2" type="number" value="700" step="1"></label>
+          <label class="v-label">y2 <input id="y2" type="number" value="500" step="1"></label>
+        </div>
+
+        <div id="polyline-fields" hidden>
+          <p class="hint">Пять точек ломаной (P0 … P4):</p>
+          <div class="poly-grid" id="poly-inputs"></div>
+        </div>
+
+        <div class="row">
+          <button id="apply" class="v-btn">Построить</button>
+          <button id="random" class="v-btn-outline">Случайные тесты</button>
+          <button id="clear" class="v-btn-outline">Очистить</button>
+        </div>
+      </div>
+
+      <div class="v-card">
+        <h2 class="v-title">3. Коды концов</h2>
+        <div id="codes" class="codes"></div>
+      </div>
+
+      <div class="v-card">
+        <h2 class="v-title">4. Таблица итераций</h2>
+        <div class="table-scroll">
+          <table id="iter-table">
+            <thead>
+              <tr>
+                <th>шаг</th><th>A</th><th>codeA</th><th>B</th><th>codeB</th><th>действие</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="v-card">
+        <h2 class="v-title">5. Эксперимент</h2>
+        <div id="stats" class="stats">
+          <div class="stat-line"><span>принят без изменения</span><b id="st-accept">0</b></div>
+          <div class="stat-line"><span>отсечён</span><b id="st-clipped">0</b></div>
+          <div class="stat-line"><span>полностью отброшен</span><b id="st-reject">0</b></div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
