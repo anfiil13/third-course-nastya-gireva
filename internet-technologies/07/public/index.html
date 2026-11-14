@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Моя библиотека</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Моя библиотека</h1>
+
+    <section class="card">
+      <h2>Добавить книгу</h2>
+      <form id="book-form" novalidate>
+        <input id="book-title" placeholder="Название *" maxlength="200">
+        <input id="book-author" placeholder="Автор" maxlength="100">
+        <input id="book-year" type="number" placeholder="Год" min="1">
+        <button type="submit">Добавить</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="toolbar">
+        <input id="filter-q" placeholder="Поиск по названию">
+        <select id="filter-available">
+          <option value="">Все книги</option>
+          <option value="true">В наличии</option>
+          <option value="false">Нет в наличии</option>
+        </select>
+        <button id="refresh-btn" type="button">Обновить</button>
+      </div>
+
+      <p id="message" class="message" role="status"></p>
+      <p id="status" class="status"></p>
+      <ul id="book-list" class="book-list"></ul>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

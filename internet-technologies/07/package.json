@@ -1,0 +1,13 @@
+{
+  "name": "lab07-books-frontend",
+  "version": "1.0.0",
+  "description": "ЛР7: браузерный интерфейс к собственному API (Express + SQLite)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.10.0",
+    "express": "^4.21.2"
+  }
+}

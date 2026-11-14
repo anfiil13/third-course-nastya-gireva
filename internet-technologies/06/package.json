@@ -1,0 +1,14 @@
+{
+  "name": "books-api-sqlite",
+  "version": "1.0.0",
+  "description": "ПР6: REST API каталога книг на Express + SQLite (better-sqlite3)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "better-sqlite3": "^11.5.0"
+  }
+}
