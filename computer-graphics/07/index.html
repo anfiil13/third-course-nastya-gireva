@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ЛР7. Геометрические преобразования 2D</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Редактор геометрических преобразований 2D</h1>
+
+  <div class="layout">
+    <div>
+      <canvas id="canvas" width="640" height="520"></canvas>
+      <div class="legend">
+        <span><i class="sw src"></i>исходная фигура</span>
+        <span><i class="sw res"></i>результат</span>
+        <span><i class="sw other"></i>другой режим</span>
+        <span><i class="sw ctr"></i>центр C</span>
+      </div>
+      <p class="small">1 клетка = 1 единица. Ось Y направлена вверх. Щелчок по холсту задаёт центр C.</p>
+    </div>
+
+    <aside class="panel">
+      <fieldset>
+        <legend>Исходная фигура</legend>
+        <label>Вершины (по одной в строке: x y)
+          <textarea id="vertices" rows="6"></textarea>
+        </label>
+        <button id="apply-vertices" type="button" class="secondary">Задать вершины</button>
+        <p id="vertices-error" class="error"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Параметры</legend>
+        <div class="grid2">
+          <label>tx <input id="tx" type="number" step="any"></label>
+          <label>ty <input id="ty" type="number" step="any"></label>
+          <label>sx <input id="sx" type="number" step="any"></label>
+          <label>sy <input id="sy" type="number" step="any"></label>
+          <label>угол, ° <input id="angle" type="number" step="any"></label>
+          <span></span>
+          <label>cx <input id="cx" type="number" step="any"></label>
+          <label>cy <input id="cy" type="number" step="any"></label>
+        </div>
+        <div class="row small-buttons">
+          <button type="button" class="secondary" id="center-centroid">центр фигуры</button>
+          <button type="button" class="secondary" id="center-origin">(0, 0)</button>
+          <button type="button" class="secondary" id="center-p0">вершина P0</button>
+        </div>
+
+        <div class="modes">
+          <label><input type="radio" name="mode" value="A" checked> A: сначала повернуть, потом перенести <code>T·R</code></label>
+          <label><input type="radio" name="mode" value="B"> B: сначала перенести, потом повернуть <code>R·T</code></label>
+          <label><input type="checkbox" id="show-other" checked> показать результат другого режима</label>
+        </div>
+
+        <div class="row">
+          <button id="apply" type="button">Применить</button>
+          <button id="reset" type="button" class="secondary">Сброс</button>
+        </div>
+        <p id="params-error" class="error"></p>
+      </fieldset>
+    </aside>
+  </div>
+
+  <div class="tables">
+    <section>
+      <h2>Итоговая матрица M <span id="mode-label"></span></h2>
+      <p class="formula" id="formula"></p>
+      <table id="matrix" class="matrix"></table>
+    </section>
+
+    <section>
+      <h2>Сравнение режимов</h2>
+      <table id="compare">
+        <thead>
+          <tr><th>Вершина</th><th>A: T·R</th><th>B: R·T</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </div>
+
+  <h2>Таблица вершин</h2>
+  <table id="vertex-table">
+    <thead>
+      <tr><th>Вершина</th><th>x исходный</th><th>y исходный</th><th>x новый</th><th>y новый</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Обязательные проверки</h2>
+  <table id="checks-table">
+    <thead>
+      <tr><th>№</th><th>Проверка</th><th>Подробности</th><th>Итог</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="matrix.js"></script>
+  <script src="checks.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

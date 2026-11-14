@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ЛР6. Отсечение многоугольника: Сазерленд–Ходжман</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Отсечение многоугольника алгоритмом Сазерленда–Ходжмана</h1>
+
+  <div class="layout">
+    <div>
+      <canvas id="canvas" width="600" height="430"></canvas>
+      <p class="hint" id="hint"></p>
+      <div class="legend">
+        <span><i class="sw src"></i>исходный</span>
+        <span><i class="sw win"></i>окно</span>
+        <span><i class="sw res"></i>результат этапа</span>
+        <span><i class="sw bnd"></i>текущая граница</span>
+      </div>
+    </div>
+
+    <aside class="panel">
+      <fieldset>
+        <legend>Многоугольник</legend>
+        <label>Тест
+          <select id="test-select"></select>
+        </label>
+        <div class="row">
+          <button id="draw-btn" type="button">Задать мышью</button>
+          <button id="finish-btn" type="button" disabled>Завершить</button>
+        </div>
+        <p class="small">Режим мыши: щелчки добавляют вершины, «Завершить» (или двойной щелчок) замыкает контур.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Окно отсечения</legend>
+        <div class="grid2">
+          <label>xmin <input id="xmin" type="number"></label>
+          <label>xmax <input id="xmax" type="number"></label>
+          <label>ymin <input id="ymin" type="number"></label>
+          <label>ymax <input id="ymax" type="number"></label>
+        </div>
+        <button id="apply-window" type="button">Применить окно</button>
+        <p id="window-error" class="error"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Этап</legend>
+        <div id="stage-buttons" class="stages"></div>
+      </fieldset>
+    </aside>
+  </div>
+
+  <h2>Промежуточные результаты</h2>
+  <table id="stages-table">
+    <thead>
+      <tr><th>Этап</th><th>Число вершин</th><th>Координаты</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Переходы на выбранном этапе</h2>
+  <table id="log-table">
+    <thead>
+      <tr><th>S</th><th>P</th><th>Переход</th><th>Добавлено в результат</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Обязательные тесты</h2>
+  <button id="run-tests" type="button">Запустить все тесты</button>
+  <table id="tests-table">
+    <thead>
+      <tr><th>Тест</th><th>Ожидание</th><th>Вершин было → стало</th><th>Изменили этапы</th><th>Итог</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="clipping.js"></script>
+  <script src="tests.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
